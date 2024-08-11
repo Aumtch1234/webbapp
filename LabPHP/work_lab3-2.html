@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html | Work3-2</title>
+
+    <script type="text/javascript">
+        function alert_data(){
+            var input_name = document.myForm.name.value
+            var input_idcard = document.myForm.idcard.value
+
+            if(input_name == "" && input_idcard == ""){
+                alert("Form must be filled")
+                return false
+            }
+            else if(!/^[A-Za-z\s]+$/.test(input_name) && input_idcard == ""){
+                alert("Name must be filled in English");
+                return false;
+            }
+            else if(/^[A-Za-z\s]+$/.test(input_name) && input_idcard == ""){
+                alert("ID card must be filled");
+                return false;
+            }
+            else if(/^[A-Za-z\s]+$/.test(input_name) && !/^[0-9]+$/.test(input_idcard)){
+                alert("ID card must input number");
+                return false;
+            }
+            else if(/^[A-Za-z\s]+$/.test(input_name) && !/^[0-9]+$/.test(input_idcard) || input_idcard.length !== 13){
+                alert("ID card must has number of digits equal 13");
+                return false;
+            }
+            else {
+                alert("Thank you for data");
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <form name="myForm" onsubmit="return alert_data()" method="POST" action="action_page1.php">
+        <label>Name:</label>
+        <input type="text" name="name">
+
+        <label>ID Card:</label>
+        <input type="text" name="idcard">
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
